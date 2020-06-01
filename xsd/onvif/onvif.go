@@ -342,7 +342,7 @@ type AudioOutput struct {
 }
 
 type Profile struct {
-	Token                       ReferenceToken `xml:"token,attr"`
+	Token                       ReferenceToken `xml:"token,attr" json:"token"`
 	Fixed                       bool           `xml:"fixed,attr"`
 	Name                        Name
 	VideoSourceConfiguration    VideoSourceConfiguration
@@ -364,7 +364,7 @@ type VideoSourceConfiguration struct {
 }
 
 type ConfigurationEntity struct {
-	Token    ReferenceToken `xml:"token,attr"`
+	Token    ReferenceToken `xml:"token,attr" json:"token"`
 	Name     Name           `xml:"onvif:Name"`
 	UseCount int            `xml:"onvif:UseCount"`
 }
@@ -830,7 +830,7 @@ type MediaUri struct {
 }
 
 type VideoSourceMode struct {
-	Token         ReferenceToken `xml:"token,attr"`
+	Token         ReferenceToken `xml:"token,attr" json:"token"`
 	Enabled       bool           `xml:"Enabled,attr"`
 	MaxFramerate  float64
 	MaxResolution VideoResolution
@@ -1007,7 +1007,7 @@ type PTControlDirectionOptionsExtension xsd.AnyType
 type PTZConfigurationOptions2 xsd.AnyType
 
 type PTZPreset struct {
-	Token       ReferenceToken `xml:"token,attr"`
+	Token       ReferenceToken `xml:"token,attr" json:"token"`
 	Name        Name
 	PTZPosition PTZVector
 }
@@ -1040,7 +1040,7 @@ type GeoLocation struct {
 }
 
 type PresetTour struct {
-	Token             ReferenceToken                 `xml:"token,attr"`
+	Token             ReferenceToken                 `xml:"token,attr" json:"token"`
 	Name              Name                           `xml:"onvif:Name"`
 	Status            PTZPresetTourStatus            `xml:"onvif:Status"`
 	AutoStart         xsd.Boolean                    `xml:"onvif:AutoStart"`
