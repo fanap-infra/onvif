@@ -425,7 +425,7 @@ type VideoEncoderConfiguration struct {
 	Resolution     VideoResolution        `xml:"onvif:Resolution"`
 	Quality        float64                `xml:"onvif:Quality"`
 	RateControl    VideoRateControl       `xml:"onvif:RateControl"`
-	MPEG4          Mpeg4Configuration     `xml:"onvif:MPEG4"`
+	MPEG4          *Mpeg4Configuration     `xml:"onvif:MPEG4"`
 	H264           H264Configuration      `xml:"onvif:H264"`
 	Multicast      MulticastConfiguration `xml:"onvif:Multicast"`
 	SessionTimeout xsd.Duration           `xml:"onvif:SessionTimeout"`
