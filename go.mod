@@ -1,4 +1,4 @@
-module gitlab.com/behnama2/onvif
+module github.com/fanap-infra/onvif
 
 go 1.14
 

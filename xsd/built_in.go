@@ -11,7 +11,7 @@ import (
 	"strings"
 	"time"
 
-	"gitlab.com/behnama2/onvif/xsd/iso8601"
+	"github.com/fanap-infra/onvif/xsd/iso8601"
 )
 
 /*

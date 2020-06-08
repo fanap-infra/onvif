@@ -1,8 +1,8 @@
 package ptz
 
 import (
-	"gitlab.com/behnama2/onvif/xsd"
-	"gitlab.com/behnama2/onvif/xsd/onvif"
+	"github.com/fanap-infra/onvif/xsd"
+	"github.com/fanap-infra/onvif/xsd/onvif"
 )
 
 type Capabilities struct {

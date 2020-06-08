@@ -11,11 +11,11 @@ import (
 	"strings"
 
 	"github.com/beevik/etree"
+	"github.com/fanap-infra/onvif"
+	"github.com/fanap-infra/onvif/gosoap"
+	"github.com/fanap-infra/onvif/networking"
+	wsdiscovery "github.com/fanap-infra/onvif/ws-discovery"
 	"github.com/gin-gonic/gin"
-	"gitlab.com/behnama2/onvif"
-	"gitlab.com/behnama2/onvif/gosoap"
-	"gitlab.com/behnama2/onvif/networking"
-	wsdiscovery "gitlab.com/behnama2/onvif/ws-discovery"
 )
 
 func RunApi() {

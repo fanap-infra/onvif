@@ -1,13 +1,13 @@
 # onvif protocol
 
-Simple management of onvif IP-devices cameras. onvif is an implementation of  ONVIF protocol for managing onvif IP devices. The purpose of this library is convenient and easy management of IP cameras and other devices that support ONVIF standard.
+Simple management of onvif IP-devices cameras. onvif is an implementation of ONVIF protocol for managing onvif IP devices. The purpose of this library is convenient and easy management of IP cameras and other devices that support ONVIF standard.
 
 ## Installation
 
-To install the library,  use **go get**:
+To install the library, use **go get**:
 
 ```go
-go get gitlab.com/behnama2/onvif
+go get github.com/fanap-infra/onvif
 
 ```
 
@@ -28,20 +28,20 @@ The following services are implemented:
 
 ### General concept
 
-1) Connecting to the device
-2) Authentication (if necessary)
-3) Defining Data Types
-4) Carrying out the required method
+1. Connecting to the device
+2. Authentication (if necessary)
+3. Defining Data Types
+4. Carrying out the required method
 
 #### Connecting to the device
 
-If there is a device on the network at the address *192.168.13.42*, and its ONVIF services use the *1234* port, then you can connect to the device in the following way:
+If there is a device on the network at the address _192.168.13.42_, and its ONVIF services use the _1234_ port, then you can connect to the device in the following way:
 
 ```go
 dev, err := onvif.NewDevice("192.168.13.42:1234")
 ```
 
-*The ONVIF port may differ depending on the device , to find out which port to use, you can go to the web interface of the device. **Usually this is 80 port.***
+\*The ONVIF port may differ depending on the device , to find out which port to use, you can go to the web interface of the device. **Usually this is 80 port.\***
 
 #### Authentication
 
@@ -76,7 +76,7 @@ The figure below shows that `GetServiceCapabilities` does not accept any argumen
 
 ![PTZ GetServiceCapabilities](docs/img/GetServiceCapabilities.png)
 
-*Common data types are in the xsd/onvif package. The types of data (structures) that can be shared by all services are defined in the onvif package.*
+_Common data types are in the xsd/onvif package. The types of data (structures) that can be shared by all services are defined in the onvif package._
 
 An example of how to define the data type of the CreateUsers function in [Devicemgmt](https://www.onvif.org/ver10/device/wsdl/devicemgmt.wsdl):
 

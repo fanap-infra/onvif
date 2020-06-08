@@ -1,7 +1,7 @@
 package event
 
 import (
-	"gitlab.com/behnama2/onvif/xsd"
+	"github.com/fanap-infra/onvif/xsd"
 )
 
 //GetServiceCapabilities action

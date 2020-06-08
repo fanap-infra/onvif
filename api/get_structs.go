@@ -3,9 +3,9 @@ package api
 import (
 	"errors"
 
-	"gitlab.com/behnama2/onvif/device"
-	"gitlab.com/behnama2/onvif/media"
-	"gitlab.com/behnama2/onvif/ptz"
+	"github.com/fanap-infra/onvif/device"
+	"github.com/fanap-infra/onvif/media"
+	"github.com/fanap-infra/onvif/ptz"
 )
 
 func getPTZStructByName(name string) (interface{}, error) {

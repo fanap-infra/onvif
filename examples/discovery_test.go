@@ -10,9 +10,9 @@ import (
 	"testing"
 
 	"github.com/beevik/etree"
-	"gitlab.com/behnama2/onvif"
-	"gitlab.com/behnama2/onvif/device"
-	discover "gitlab.com/behnama2/onvif/ws-discovery"
+	"github.com/fanap-infra/onvif"
+	"github.com/fanap-infra/onvif/device"
+	discover "github.com/fanap-infra/onvif/ws-discovery"
 )
 
 func TestGetAvailableDevicesAtSpecificEthernetInterface(t *testing.T) {
