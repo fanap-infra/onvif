@@ -73,7 +73,7 @@ func NewSecurity(username, passwd string) Security {
 				Type:  encodingType,
 				Nonce: nonceSeq,
 			},
-			Created: time.Now().UTC().Format(time.RFC3339Nano),
+			Created: time.Now().UTC().Format("2020-06-13T06:04:43+00:00"),
 		},
 	}
 
@@ -87,7 +87,7 @@ func generateToken(Username string, Nonce string, Created time.Time, Password st
 
 	hasher := sha1.New()
 	//hasher.Write([]byte((base64.StdEncoding.EncodeToString([]byte(Nonce)) + Created.Format(time.RFC3339) + Password)))
-	hasher.Write([]byte(string(sDec) + Created.Format(time.RFC3339Nano) + Password))
+	hasher.Write([]byte(string(sDec) + Created.Format("2020-06-13T06:04:43+00:00") + Password))
 
 	return base64.StdEncoding.EncodeToString(hasher.Sum(nil))
 }
