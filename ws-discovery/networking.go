@@ -13,19 +13,79 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strings"
 	"time"
 
+	"github.com/beevik/etree"
 	"github.com/gofrs/uuid"
 	"golang.org/x/net/ipv4"
 )
 
 const bufSize = 8192
 
+//SendProbeToSpecificDevice ...
+func SendProbeToSpecificDevice(ip string, scopes, types []string, namespaces map[string]string) string {
+	uuidV4 := uuid.Must(uuid.NewV4())
+	probeSOAP := buildProbeMessage(uuidV4.String(), scopes, types, namespaces)
+	response := writeUDP(ip, 3702, probeSOAP.String())
+	return response
+}
+
+func writeUDP(ip string, port int, data string) string {
+
+	address := net.UDPAddr{Port: port, IP: net.ParseIP(ip)}
+
+	fmt.Printf("Client to contact server at %v\n", address)
+
+	conn, err := net.DialUDP("udp", nil, &address)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("Connected: %T, %v\n", conn, conn)
+
+	fmt.Printf("Local address: %v\n", conn.LocalAddr())
+	fmt.Printf("Remote address: %v\n", conn.RemoteAddr())
+
+	b := []byte(data)
+	readBytes := make([]byte, 4000)
+
+	_, wrerr := conn.Write(b)
+
+	if wrerr != nil {
+		fmt.Printf("conn.Write() error: %s\n", wrerr)
+		return ""
+	}
+
+	conn.SetDeadline(time.Now().Add(5 * time.Second))
+	cc, rderr := conn.Read(readBytes)
+	if rderr != nil {
+		fmt.Printf("conn.Read() error: %s\n", rderr)
+		return ""
+	}
+
+	if err = conn.Close(); err != nil {
+		return ""
+	}
+
+	doc := etree.NewDocument()
+	if err := doc.ReadFromString(string(readBytes[0:cc])); err != nil {
+		log.Printf("error %s", err)
+		return ""
+	}
+
+	uuid := doc.Root().FindElements("./Body/ProbeMatches/ProbeMatch/EndpointReference/Address")
+	uuidStr := strings.Split(uuid[0].Text(), ":")[2]
+
+	return uuidStr
+}
+
 //SendProbe to device
 func SendProbe(interfaceName string, scopes, types []string, namespaces map[string]string) []string {
 	// Creating UUID Version 4
 	uuidV4 := uuid.Must(uuid.NewV4())
-	//fmt.Printf("UUIDv4: %s\n", uuidV4)
+	// fmt.Printf("UUIDv4: %s\n", uuidV4)
 
 	probeSOAP := buildProbeMessage(uuidV4.String(), scopes, types, namespaces)
 	//probeSOAP = `<?xml version="1.0" encoding="UTF-8"?>
