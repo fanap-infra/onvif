@@ -58,7 +58,7 @@ func writeUDP(ip string, port int, data string) string {
 		return ""
 	}
 
-	conn.SetDeadline(time.Now().Add(5 * time.Second))
+	conn.SetReadDeadline(time.Now().Add(1 * time.Second))
 	cc, rderr := conn.Read(readBytes)
 	if rderr != nil {
 		fmt.Printf("conn.Read() error: %s\n", rderr)
