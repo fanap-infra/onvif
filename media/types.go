@@ -504,7 +504,7 @@ type SetVideoAnalyticsConfigurationResponse struct {
 }
 
 type SetMetadataConfiguration struct {
-	XMLName          string                      `xml:"trt:GetDeviceInformation"`
+	XMLName          string                      `xml:"trt:SetMetadataConfiguration"`
 	Configuration    onvif.MetadataConfiguration `xml:"trt:Configuration"`
 	ForcePersistence xsd.Boolean                 `xml:"trt:ForcePersistence"`
 }
