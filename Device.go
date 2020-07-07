@@ -259,6 +259,18 @@ func (dev Device) CallMethod(method interface{}) (*http.Response, error) {
 	return dev.callMethodDo(endpoint, method)
 }
 
+//CallMethodXML ...
+func (dev Device) CallMethodXML(method interface{}, xml string) (*http.Response, error) {
+	pkgPath := strings.Split(reflect.TypeOf(method).PkgPath(), "/")
+	pkg := strings.ToLower(pkgPath[len(pkgPath)-1])
+
+	endpoint, err := dev.getEndpoint(pkg)
+	if err != nil {
+		return nil, err
+	}
+	return networking.SendSoap(endpoint, xml)
+}
+
 //CallMethod functions call an method, defined <method> struct with authentication data
 func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Response, error) {
 	/*
