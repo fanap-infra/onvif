@@ -4,17 +4,17 @@ import (
 	"bytes"
 	"net/http"
 	"time"
+
+	dac "github.com/xinsnake/go-http-digest-auth-client"
 )
 
 // SendSoap send soap message
-func SendSoap(endpoint, message string) (*http.Response, error) {
-	httpClient := new(http.Client)
-
-	resp, err := httpClient.Post(endpoint, "application/soap+xml; charset=utf-8", bytes.NewBufferString(message))
+func SendSoap(username, password, endpoint, message string) (*http.Response, error) {
+	dr := dac.NewRequest(username, password, "POST", endpoint, message)
+	resp, err := dr.Execute()
 	if err != nil {
 		return resp, err
 	}
-
 	return resp, nil
 }
 

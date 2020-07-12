@@ -145,7 +145,7 @@ func callNecessaryMethod(serviceName, methodName, acceptedData, username, passwo
 	soap := gosoap.NewEmptySOAP()
 	soap.AddStringBodyContent(*resp)
 	soap.AddRootNamespaces(onvif.Xlmns)
-	soap.AddWSSecurity(username, password)
+	// soap.AddWSSecurity(username, password)
 
 	servResp, err := networking.SendSoap(endpoint, soap.String())
 	if err != nil {

@@ -268,7 +268,7 @@ func (dev Device) CallMethodXML(method interface{}, xml string) (*http.Response,
 	if err != nil {
 		return nil, err
 	}
-	return networking.SendSoap(endpoint, xml)
+	return networking.SendSoap(dev.login, dev.password, endpoint, xml)
 }
 
 //CallMethod functions call an method, defined <method> struct with authentication data
@@ -302,12 +302,12 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 	soap.AddAction()
 
 	//Auth Handling
-	if dev.login != "" && dev.password != "" {
-		soap.AddWSSecurity(dev.login, dev.password)
-	}
+	// if dev.login != "" && dev.password != "" {
+	// 	soap.AddWSSecurity(dev.login, dev.password)
+	// }
 	//fmt.Println(soap.StringIndent())
 	/*
 		Sending request and returns the response
 	*/
-	return networking.SendSoap(endpoint, soap.String())
+	return networking.SendSoap(dev.login, dev.password, endpoint, soap.String())
 }
