@@ -302,9 +302,9 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 	soap.AddAction()
 
 	//Auth Handling
-	// if dev.login != "" && dev.password != "" {
-	// 	soap.AddWSSecurity(dev.login, dev.password)
-	// }
+	if dev.login != "" && dev.password != "" {
+		soap.AddWSSecurity(dev.login, dev.password)
+	}
 	//fmt.Println(soap.StringIndent())
 	/*
 		Sending request and returns the response
