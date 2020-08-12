@@ -1594,12 +1594,12 @@ type PrefixedIPv4Address struct {
 }
 
 type NetworkInterfaceSetConfiguration struct {
-	Enabled   xsd.Boolean                               `xml:"onvif:Enabled"`
-	Link      NetworkInterfaceConnectionSetting         `xml:"onvif:Link"`
-	MTU       xsd.Int                                   `xml:"onvif:MTU"`
-	IPv4      IPv4NetworkInterfaceSetConfiguration      `xml:"onvif:IPv4"`
-	IPv6      IPv6NetworkInterfaceSetConfiguration      `xml:"onvif:IPv6"`
-	Extension NetworkInterfaceSetConfigurationExtension `xml:"onvif:Extension"`
+	Enabled   *xsd.Boolean                               `xml:"onvif:Enabled"`
+	Link      *NetworkInterfaceConnectionSetting         `xml:"onvif:Link"`
+	MTU       *xsd.Int                                   `xml:"onvif:MTU"`
+	IPv4      IPv4NetworkInterfaceSetConfiguration       `xml:"onvif:IPv4"`
+	IPv6      *IPv6NetworkInterfaceSetConfiguration      `xml:"onvif:IPv6"`
+	Extension *NetworkInterfaceSetConfigurationExtension `xml:"onvif:Extension"`
 }
 
 type NetworkInterfaceSetConfigurationExtension struct {
@@ -1618,7 +1618,7 @@ type IPv6NetworkInterfaceSetConfiguration struct {
 }
 
 type IPv4NetworkInterfaceSetConfiguration struct {
-	Enabled xsd.Boolean         `xml:"onvif:Enabled"`
+	Enabled *xsd.Boolean        `xml:"onvif:Enabled"`
 	Manual  PrefixedIPv4Address `xml:"onvif:Manual"`
 	DHCP    xsd.Boolean         `xml:"onvif:DHCP"`
 }
