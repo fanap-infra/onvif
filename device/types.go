@@ -489,9 +489,9 @@ type GetNetworkDefaultGatewayResponse struct {
 }
 
 type SetNetworkDefaultGateway struct {
-	XMLName     string            `xml:"tds:SetNetworkDefaultGateway"`
-	IPv4Address onvif.IPv4Address `xml:"tds:IPv4Address"`
-	IPv6Address onvif.IPv6Address `xml:"tds:IPv6Address"`
+	XMLName     string             `xml:"tds:SetNetworkDefaultGateway"`
+	IPv4Address onvif.IPv4Address  `xml:"tds:IPv4Address"`
+	IPv6Address *onvif.IPv6Address `xml:"tds:IPv6Address"`
 }
 
 type SetNetworkDefaultGatewayResponse struct {
