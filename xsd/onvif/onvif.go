@@ -1613,7 +1613,7 @@ type NetworkInterfaceSetConfigurationExtension2 xsd.AnyType
 type IPv6NetworkInterfaceSetConfiguration struct {
 	Enabled            xsd.Boolean           `xml:"onvif:Enabled"`
 	AcceptRouterAdvert xsd.Boolean           `xml:"onvif:AcceptRouterAdvert"`
-	Manual             PrefixedIPv6Address   `xml:"onvif:Manual"`
+	Manual             *PrefixedIPv6Address  `xml:"onvif:Manual"`
 	DHCP               IPv6DHCPConfiguration `xml:"onvif:DHCP"`
 }
 
