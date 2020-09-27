@@ -23,6 +23,19 @@ import (
 
 const bufSize = 8192
 
+//CheckConnection ...
+func CheckConnection(ip, port string) (bool, error) {
+	servAddr := ip + ":" + port
+
+	d := net.Dialer{Timeout: 2 * time.Second}
+	_, err := d.Dial("tcp", servAddr)
+	if err != nil {
+		return false, err
+	}
+
+	return true, nil
+}
+
 //SendProbeToSpecificDevice ...
 func SendProbeToSpecificDevice(ip string, scopes, types []string, namespaces map[string]string) string {
 	uuidV4 := uuid.Must(uuid.NewV4())
@@ -74,6 +87,8 @@ func writeUDP(ip string, port int, data string) string {
 		log.Printf("error %s", err)
 		return ""
 	}
+
+	log.Printf("doc  ==== :::: ", doc.Root().FindElements("./Body"))
 
 	uuid := doc.Root().FindElements("./Body/ProbeMatches/ProbeMatch/EndpointReference/Address")
 	uuidStr := strings.Split(uuid[0].Text(), ":")[2]
