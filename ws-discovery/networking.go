@@ -88,8 +88,6 @@ func writeUDP(ip string, port int, data string) string {
 		return ""
 	}
 
-	log.Printf("doc  ==== :::: ", doc.Root().FindElements("./Body"))
-
 	uuid := doc.Root().FindElements("./Body/ProbeMatches/ProbeMatch/EndpointReference/Address")
 	uuidStr := strings.Split(uuid[0].Text(), ":")[2]
 
