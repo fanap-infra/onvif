@@ -1618,9 +1618,9 @@ type IPv6NetworkInterfaceSetConfiguration struct {
 }
 
 type IPv4NetworkInterfaceSetConfiguration struct {
-	Enabled *xsd.Boolean        `xml:"onvif:Enabled"`
-	Manual  PrefixedIPv4Address `xml:"onvif:Manual"`
-	DHCP    xsd.Boolean         `xml:"onvif:DHCP"`
+	Enabled *xsd.Boolean         `xml:"onvif:Enabled"`
+	Manual  *PrefixedIPv4Address `xml:"onvif:Manual"`
+	DHCP    xsd.Boolean          `xml:"onvif:DHCP"`
 }
 
 type NetworkProtocol struct {
