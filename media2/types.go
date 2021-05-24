@@ -9,8 +9,10 @@ import (
 )
 
 // against "unused imports"
-var _ time.Time
-var _ xml.Name
+var (
+	_ time.Time
+	_ xml.Name
+)
 
 // ConfigurationEnumeration type
 type ConfigurationEnumeration string
@@ -206,7 +208,7 @@ type GetVideoEncoderConfigurationsResponse struct {
 
 // GetVideoSourceConfigurations type
 type GetVideoSourceConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoSourceConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -225,7 +227,7 @@ type GetVideoSourceConfigurationsResponse struct {
 
 // GetAudioEncoderConfigurations type
 type GetAudioEncoderConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioEncoderConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -244,7 +246,7 @@ type GetAudioEncoderConfigurationsResponse struct {
 
 // GetAudioSourceConfigurations type
 type GetAudioSourceConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioSourceConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -263,7 +265,7 @@ type GetAudioSourceConfigurationsResponse struct {
 
 // GetAnalyticsConfigurations type
 type GetAnalyticsConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAnalyticsConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -282,7 +284,7 @@ type GetAnalyticsConfigurationsResponse struct {
 
 // GetMetadataConfigurations type
 type GetMetadataConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetMetadataConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -301,7 +303,7 @@ type GetMetadataConfigurationsResponse struct {
 
 // GetAudioOutputConfigurations type
 type GetAudioOutputConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioOutputConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -320,7 +322,7 @@ type GetAudioOutputConfigurationsResponse struct {
 
 // GetAudioDecoderConfigurations type
 type GetAudioDecoderConfigurations struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioDecoderConfigurations"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -395,7 +397,7 @@ type SetAudioDecoderConfiguration struct {
 
 // GetVideoSourceConfigurationOptions type
 type GetVideoSourceConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoSourceConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -414,7 +416,7 @@ type GetVideoSourceConfigurationOptionsResponse struct {
 
 // GetVideoEncoderConfigurationOptions type
 type GetVideoEncoderConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -432,7 +434,7 @@ type GetVideoEncoderConfigurationOptionsResponse struct {
 
 // GetAudioSourceConfigurationOptions type
 type GetAudioSourceConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioSourceConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -451,7 +453,7 @@ type GetAudioSourceConfigurationOptionsResponse struct {
 
 // GetAudioEncoderConfigurationOptions type
 type GetAudioEncoderConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioEncoderConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -470,7 +472,7 @@ type GetAudioEncoderConfigurationOptionsResponse struct {
 
 // GetMetadataConfigurationOptions type
 type GetMetadataConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetMetadataConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -489,7 +491,7 @@ type GetMetadataConfigurationOptionsResponse struct {
 
 // GetAudioOutputConfigurationOptions type
 type GetAudioOutputConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioOutputConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -508,7 +510,7 @@ type GetAudioOutputConfigurationOptionsResponse struct {
 
 // GetAudioDecoderConfigurationOptions type
 type GetAudioDecoderConfigurationOptions struct {
-	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetVideoEncoderConfigurations"`
+	XMLName xml.Name `xml:"http://www.onvif.org/ver20/media/wsdl GetAudioDecoderConfigurationOptions"`
 
 	// Token of the requested configuration.
 	ConfigurationToken ReferenceToken `xml:"http://www.onvif.org/ver20/media/wsdl ConfigurationToken,omitempty"`
@@ -1053,12 +1055,10 @@ type Envelope struct {
 }
 
 // Header type
-type Header struct {
-}
+type Header struct{}
 
 // Body type
-type Body struct {
-}
+type Body struct{}
 
 // Fault type
 type Fault struct {
@@ -1210,8 +1210,7 @@ type EndpointReferenceType struct {
 }
 
 // ReferenceParametersType type
-type ReferenceParametersType struct {
-}
+type ReferenceParametersType struct{}
 
 // MetadataType type
 type MetadataType struct {
@@ -1264,8 +1263,7 @@ type BaseFaultType struct {
 		string `xml:",attr,omitempty"`
 	} `xml:"Description,omitempty"`
 
-	FaultCause struct {
-	} `xml:"FaultCause,omitempty"`
+	FaultCause struct{} `xml:"FaultCause,omitempty"`
 }
 
 // ConcreteTopicExpression type
@@ -1281,8 +1279,7 @@ type TopicNamespace TopicNamespaceType
 type TopicSet TopicSetType
 
 // Documentation type
-type Documentation struct {
-}
+type Documentation struct{}
 
 // ExtensibleDocumented type
 type ExtensibleDocumented struct {
@@ -1396,8 +1393,7 @@ type Subscribe struct {
 
 	InitialTerminationTime AbsoluteOrRelativeTimeType `xml:"InitialTerminationTime,omitempty"`
 
-	SubscriptionPolicy struct {
-	} `xml:"SubscriptionPolicy,omitempty"`
+	SubscriptionPolicy struct{} `xml:"SubscriptionPolicy,omitempty"`
 }
 
 // SubscribeCreationFailedFault type
@@ -1489,8 +1485,7 @@ type NotificationMessageHolderType struct {
 
 	ProducerReference ProducerReference `xml:"ProducerReference,omitempty"`
 
-	Message struct {
-	} `xml:"Message,omitempty"`
+	Message struct{} `xml:"Message,omitempty"`
 }
 
 // SubscribeCreationFailedFaultType type
@@ -1814,8 +1809,7 @@ type Transformation struct {
 }
 
 // TransformationExtension type
-type TransformationExtension struct {
-}
+type TransformationExtension struct{}
 
 // User readable name. Length up to 64 characters.
 
@@ -3004,8 +2998,7 @@ type VideoSourceExtension struct {
 }
 
 // VideoSourceExtension2 type
-type VideoSourceExtension2 struct {
-}
+type VideoSourceExtension2 struct{}
 
 // AudioSource type
 type AudioSource struct {
@@ -3067,8 +3060,7 @@ type ProfileExtension struct {
 }
 
 // ProfileExtension2 type
-type ProfileExtension2 struct {
-}
+type ProfileExtension2 struct{}
 
 // ConfigurationEntity type
 type ConfigurationEntity struct {
@@ -3138,8 +3130,7 @@ type Rotate struct {
 }
 
 // RotateExtension type
-type RotateExtension struct {
-}
+type RotateExtension struct{}
 
 // LensProjection type
 type LensProjection struct {
@@ -3239,8 +3230,7 @@ type RotateOptions struct {
 }
 
 // RotateOptionsExtension type
-type RotateOptionsExtension struct {
-}
+type RotateOptionsExtension struct{}
 
 // SceneOrientation type
 type SceneOrientation struct {
@@ -3354,8 +3344,7 @@ type VideoEncoderOptionsExtension struct {
 }
 
 // VideoEncoderOptionsExtension2 type
-type VideoEncoderOptionsExtension2 struct {
-}
+type VideoEncoderOptionsExtension2 struct{}
 
 // JpegOptions type
 type JpegOptions struct {
@@ -3548,8 +3537,7 @@ type AudioSourceConfigurationOptions struct {
 }
 
 // AudioSourceOptionsExtension type
-type AudioSourceOptionsExtension struct {
-}
+type AudioSourceOptionsExtension struct{}
 
 // AudioEncoderConfiguration type
 type AudioEncoderConfiguration struct {
@@ -3645,8 +3633,7 @@ type MetadataConfiguration struct {
 }
 
 // MetadataConfigurationExtension type
-type MetadataConfigurationExtension struct {
-}
+type MetadataConfigurationExtension struct{}
 
 // PTZFilter type
 type PTZFilter struct {
@@ -3662,8 +3649,7 @@ type PTZFilter struct {
 type EventSubscription struct {
 	Filter FilterType `xml:"Filter,omitempty"`
 
-	SubscriptionPolicy struct {
-	} `xml:"SubscriptionPolicy,omitempty"`
+	SubscriptionPolicy struct{} `xml:"SubscriptionPolicy,omitempty"`
 }
 
 // MetadataConfigurationOptions type
@@ -3687,8 +3673,7 @@ type MetadataConfigurationOptionsExtension struct {
 }
 
 // MetadataConfigurationOptionsExtension2 type
-type MetadataConfigurationOptionsExtension2 struct {
-}
+type MetadataConfigurationOptionsExtension2 struct{}
 
 // PTZStatusFilterOptions type
 type PTZStatusFilterOptions struct {
@@ -3709,8 +3694,7 @@ type PTZStatusFilterOptions struct {
 }
 
 // PTZStatusFilterOptionsExtension type
-type PTZStatusFilterOptionsExtension struct {
-}
+type PTZStatusFilterOptionsExtension struct{}
 
 // VideoOutput type
 type VideoOutput struct {
@@ -3731,8 +3715,7 @@ type VideoOutput struct {
 }
 
 // VideoOutputExtension type
-type VideoOutputExtension struct {
-}
+type VideoOutputExtension struct{}
 
 // VideoDecoderConfigurationOptions type
 type VideoDecoderConfigurationOptions struct {
@@ -3795,8 +3778,7 @@ type Mpeg4DecOptions struct {
 }
 
 // VideoDecoderConfigurationOptionsExtension type
-type VideoDecoderConfigurationOptionsExtension struct {
-}
+type VideoDecoderConfigurationOptionsExtension struct{}
 
 // AudioOutput type
 type AudioOutput struct {
@@ -3897,8 +3879,7 @@ type G726DecOptions struct {
 }
 
 // AudioDecoderConfigurationOptionsExtension type
-type AudioDecoderConfigurationOptionsExtension struct {
-}
+type AudioDecoderConfigurationOptionsExtension struct{}
 
 // MulticastConfiguration type
 type MulticastConfiguration struct {
@@ -3980,12 +3961,10 @@ type NetworkInterfaceExtension struct {
 }
 
 // Dot3Configuration type
-type Dot3Configuration struct {
-}
+type Dot3Configuration struct{}
 
 // NetworkInterfaceExtension2 type
-type NetworkInterfaceExtension2 struct {
-}
+type NetworkInterfaceExtension2 struct{}
 
 // NetworkInterfaceLink type
 type NetworkInterfaceLink struct {
@@ -4087,8 +4066,7 @@ type IPv6Configuration struct {
 }
 
 // IPv6ConfigurationExtension type
-type IPv6ConfigurationExtension struct {
-}
+type IPv6ConfigurationExtension struct{}
 
 // NetworkProtocol type
 type NetworkProtocol struct {
@@ -4106,8 +4084,7 @@ type NetworkProtocol struct {
 }
 
 // NetworkProtocolExtension type
-type NetworkProtocolExtension struct {
-}
+type NetworkProtocolExtension struct{}
 
 // NetworkHost type
 type NetworkHost struct {
@@ -4128,8 +4105,7 @@ type NetworkHost struct {
 }
 
 // NetworkHostExtension type
-type NetworkHostExtension struct {
-}
+type NetworkHostExtension struct{}
 
 // IPAddress type
 type IPAddress struct {
@@ -4177,8 +4153,7 @@ type HostnameInformation struct {
 }
 
 // HostnameInformationExtension type
-type HostnameInformationExtension struct {
-}
+type HostnameInformationExtension struct{}
 
 // DNSInformation type
 type DNSInformation struct {
@@ -4199,8 +4174,7 @@ type DNSInformation struct {
 }
 
 // DNSInformationExtension type
-type DNSInformationExtension struct {
-}
+type DNSInformationExtension struct{}
 
 // NTPInformation type
 type NTPInformation struct {
@@ -4218,8 +4192,7 @@ type NTPInformation struct {
 }
 
 // NTPInformationExtension type
-type NTPInformationExtension struct {
-}
+type NTPInformationExtension struct{}
 
 // DynamicDNSInformation type
 type DynamicDNSInformation struct {
@@ -4237,8 +4210,7 @@ type DynamicDNSInformation struct {
 }
 
 // DynamicDNSInformationExtension type
-type DynamicDNSInformationExtension struct {
-}
+type DynamicDNSInformationExtension struct{}
 
 // NetworkInterfaceSetConfiguration type
 type NetworkInterfaceSetConfiguration struct {
@@ -4324,8 +4296,7 @@ type NetworkZeroConfigurationExtension struct {
 }
 
 // NetworkZeroConfigurationExtension2 type
-type NetworkZeroConfigurationExtension2 struct {
-}
+type NetworkZeroConfigurationExtension2 struct{}
 
 // IPAddressFilter type
 type IPAddressFilter struct {
@@ -4339,8 +4310,7 @@ type IPAddressFilter struct {
 }
 
 // IPAddressFilterExtension type
-type IPAddressFilterExtension struct {
-}
+type IPAddressFilterExtension struct{}
 
 // Dot11Configuration type
 type Dot11Configuration struct {
@@ -4369,8 +4339,7 @@ type Dot11SecurityConfiguration struct {
 }
 
 // Dot11SecurityConfigurationExtension type
-type Dot11SecurityConfigurationExtension struct {
-}
+type Dot11SecurityConfigurationExtension struct{}
 
 // Dot11PSKSet type
 type Dot11PSKSet struct {
@@ -4392,12 +4361,10 @@ type Dot11PSKSet struct {
 }
 
 // Dot11PSKSetExtension type
-type Dot11PSKSetExtension struct {
-}
+type Dot11PSKSetExtension struct{}
 
 // NetworkInterfaceSetConfigurationExtension2 type
-type NetworkInterfaceSetConfigurationExtension2 struct {
-}
+type NetworkInterfaceSetConfigurationExtension2 struct{}
 
 // Dot11AvailableNetworks type
 type Dot11AvailableNetworks struct {
@@ -4418,8 +4385,7 @@ type Dot11AvailableNetworks struct {
 }
 
 // Dot11AvailableNetworksExtension type
-type Dot11AvailableNetworksExtension struct {
-}
+type Dot11AvailableNetworksExtension struct{}
 
 // CapabilitiesExtension type
 type CapabilitiesExtension struct {
@@ -4441,8 +4407,7 @@ type CapabilitiesExtension struct {
 }
 
 // CapabilitiesExtension2 type
-type CapabilitiesExtension2 struct {
-}
+type CapabilitiesExtension2 struct{}
 
 // AnalyticsCapabilities type
 type AnalyticsCapabilities struct {
@@ -4479,8 +4444,7 @@ type DeviceCapabilities struct {
 }
 
 // DeviceCapabilitiesExtension type
-type DeviceCapabilitiesExtension struct {
-}
+type DeviceCapabilitiesExtension struct{}
 
 // EventCapabilities type
 type EventCapabilities struct {
@@ -4520,8 +4484,7 @@ type IOCapabilitiesExtension struct {
 }
 
 // IOCapabilitiesExtension2 type
-type IOCapabilitiesExtension2 struct {
-}
+type IOCapabilitiesExtension2 struct{}
 
 // MediaCapabilities type
 type MediaCapabilities struct {
@@ -4556,8 +4519,7 @@ type RealTimeStreamingCapabilities struct {
 }
 
 // RealTimeStreamingCapabilitiesExtension type
-type RealTimeStreamingCapabilitiesExtension struct {
-}
+type RealTimeStreamingCapabilitiesExtension struct{}
 
 // NetworkCapabilities type
 type NetworkCapabilities struct {
@@ -4585,8 +4547,7 @@ type NetworkCapabilitiesExtension struct {
 }
 
 // NetworkCapabilitiesExtension2 type
-type NetworkCapabilitiesExtension2 struct {
-}
+type NetworkCapabilitiesExtension2 struct{}
 
 // SecurityCapabilities type
 type SecurityCapabilities struct {
@@ -4676,8 +4637,7 @@ type SystemCapabilitiesExtension struct {
 }
 
 // SystemCapabilitiesExtension2 type
-type SystemCapabilitiesExtension2 struct {
-}
+type SystemCapabilitiesExtension2 struct{}
 
 // OnvifVersion type
 type OnvifVersion struct {
@@ -4792,8 +4752,7 @@ type AnalyticsDeviceCapabilities struct {
 }
 
 // AnalyticsDeviceExtension type
-type AnalyticsDeviceExtension struct {
-}
+type AnalyticsDeviceExtension struct{}
 
 // BinaryData type
 type BinaryData struct {
@@ -4826,8 +4785,7 @@ type SystemDateTime struct {
 }
 
 // SystemDateTimeExtension type
-type SystemDateTimeExtension struct {
-}
+type SystemDateTimeExtension struct{}
 
 // DateTime type
 type DateTime struct {
@@ -4883,8 +4841,7 @@ type User struct {
 }
 
 // UserExtension type
-type UserExtension struct {
-}
+type UserExtension struct{}
 
 // CertificateGenerationParameters type
 type CertificateGenerationParameters struct {
@@ -4900,8 +4857,7 @@ type CertificateGenerationParameters struct {
 }
 
 // CertificateGenerationParametersExtension type
-type CertificateGenerationParametersExtension struct {
-}
+type CertificateGenerationParametersExtension struct{}
 
 // Certificate type
 type Certificate struct {
@@ -4947,8 +4903,7 @@ type CertificateUsage struct {
 }
 
 // CertificateInformationExtension type
-type CertificateInformationExtension struct {
-}
+type CertificateInformationExtension struct{}
 
 // Dot1XConfiguration type
 type Dot1XConfiguration struct {
@@ -4971,8 +4926,7 @@ type Dot1XConfiguration struct {
 }
 
 // Dot1XConfigurationExtension type
-type Dot1XConfigurationExtension struct {
-}
+type Dot1XConfigurationExtension struct{}
 
 // EAPMethodConfiguration type
 type EAPMethodConfiguration struct {
@@ -4987,8 +4941,7 @@ type EAPMethodConfiguration struct {
 }
 
 // EapMethodExtension type
-type EapMethodExtension struct {
-}
+type EapMethodExtension struct{}
 
 // TLSConfiguration type
 type TLSConfiguration struct {
@@ -5077,8 +5030,7 @@ type PTZNodeExtension struct {
 }
 
 // PTZNodeExtension2 type
-type PTZNodeExtension2 struct {
-}
+type PTZNodeExtension2 struct{}
 
 // PTZPresetTourSupported type
 type PTZPresetTourSupported struct {
@@ -5093,8 +5045,7 @@ type PTZPresetTourSupported struct {
 }
 
 // PTZPresetTourSupportedExtension type
-type PTZPresetTourSupportedExtension struct {
-}
+type PTZPresetTourSupportedExtension struct{}
 
 // PTZConfiguration type
 type PTZConfiguration struct {
@@ -5180,8 +5131,7 @@ type PTZConfigurationExtension struct {
 }
 
 // PTZConfigurationExtension2 type
-type PTZConfigurationExtension2 struct {
-}
+type PTZConfigurationExtension2 struct{}
 
 // PTControlDirection type
 type PTControlDirection struct {
@@ -5196,8 +5146,7 @@ type PTControlDirection struct {
 }
 
 // PTControlDirectionExtension type
-type PTControlDirectionExtension struct {
-}
+type PTControlDirectionExtension struct{}
 
 // EFlip type
 type EFlip struct {
@@ -5241,8 +5190,7 @@ type PTZConfigurationOptions struct {
 }
 
 // PTZConfigurationOptions2 type
-type PTZConfigurationOptions2 struct {
-}
+type PTZConfigurationOptions2 struct{}
 
 // PTControlDirectionOptions type
 type PTControlDirectionOptions struct {
@@ -5257,8 +5205,7 @@ type PTControlDirectionOptions struct {
 }
 
 // PTControlDirectionOptionsExtension type
-type PTControlDirectionOptionsExtension struct {
-}
+type PTControlDirectionOptionsExtension struct{}
 
 // EFlipOptions type
 type EFlipOptions struct {
@@ -5270,8 +5217,7 @@ type EFlipOptions struct {
 }
 
 // EFlipOptionsExtension type
-type EFlipOptionsExtension struct {
-}
+type EFlipOptionsExtension struct{}
 
 // ReverseOptions type
 type ReverseOptions struct {
@@ -5283,8 +5229,7 @@ type ReverseOptions struct {
 }
 
 // ReverseOptionsExtension type
-type ReverseOptionsExtension struct {
-}
+type ReverseOptionsExtension struct{}
 
 // PanTiltLimits type
 type PanTiltLimits struct {
@@ -5365,8 +5310,7 @@ type PTZSpaces struct {
 }
 
 // PTZSpacesExtension type
-type PTZSpacesExtension struct {
-}
+type PTZSpacesExtension struct{}
 
 // Space2DDescription type
 type Space2DDescription struct {
@@ -5445,8 +5389,7 @@ type PTZPresetTourSpot struct {
 }
 
 // PTZPresetTourSpotExtension type
-type PTZPresetTourSpotExtension struct {
-}
+type PTZPresetTourSpotExtension struct{}
 
 // PTZPresetTourPresetDetail type
 type PTZPresetTourPresetDetail struct {
@@ -5464,8 +5407,7 @@ type PTZPresetTourPresetDetail struct {
 }
 
 // PTZPresetTourTypeExtension type
-type PTZPresetTourTypeExtension struct {
-}
+type PTZPresetTourTypeExtension struct{}
 
 // PTZPresetTourStatus type
 type PTZPresetTourStatus struct {
@@ -5480,8 +5422,7 @@ type PTZPresetTourStatus struct {
 }
 
 // PTZPresetTourStatusExtension type
-type PTZPresetTourStatusExtension struct {
-}
+type PTZPresetTourStatusExtension struct{}
 
 // PTZPresetTourStartingCondition type
 type PTZPresetTourStartingCondition struct {
@@ -5503,8 +5444,7 @@ type PTZPresetTourStartingCondition struct {
 }
 
 // PTZPresetTourStartingConditionExtension type
-type PTZPresetTourStartingConditionExtension struct {
-}
+type PTZPresetTourStartingConditionExtension struct{}
 
 // PTZPresetTourPresetDetailOptions type
 type PTZPresetTourPresetDetailOptions struct {
@@ -5525,8 +5465,7 @@ type PTZPresetTourPresetDetailOptions struct {
 }
 
 // PTZPresetTourPresetDetailOptionsExtension type
-type PTZPresetTourPresetDetailOptionsExtension struct {
-}
+type PTZPresetTourPresetDetailOptionsExtension struct{}
 
 // PTZPresetTourStartingConditionOptions type
 type PTZPresetTourStartingConditionOptions struct {
@@ -5544,8 +5483,7 @@ type PTZPresetTourStartingConditionOptions struct {
 }
 
 // PTZPresetTourStartingConditionOptionsExtension type
-type PTZPresetTourStartingConditionOptionsExtension struct {
-}
+type PTZPresetTourStartingConditionOptionsExtension struct{}
 
 // ImagingStatus type
 type ImagingStatus struct {
@@ -5622,8 +5560,7 @@ type ImagingSettings struct {
 }
 
 // ImagingSettingsExtension type
-type ImagingSettingsExtension struct {
-}
+type ImagingSettingsExtension struct{}
 
 // Exposure type
 type Exposure struct {
@@ -5821,8 +5758,7 @@ type ImagingStatus20 struct {
 }
 
 // ImagingStatus20Extension type
-type ImagingStatus20Extension struct {
-}
+type ImagingStatus20Extension struct{}
 
 // FocusStatus20 type
 type FocusStatus20 struct {
@@ -5846,8 +5782,7 @@ type FocusStatus20 struct {
 }
 
 // FocusStatus20Extension type
-type FocusStatus20Extension struct {
-}
+type FocusStatus20Extension struct{}
 
 // ImagingSettings20 type
 type ImagingSettings20 struct {
@@ -5919,8 +5854,7 @@ type ImagingSettingsExtension203 struct {
 }
 
 // ImagingSettingsExtension204 type
-type ImagingSettingsExtension204 struct {
-}
+type ImagingSettingsExtension204 struct{}
 
 // ImageStabilization type
 type ImageStabilization struct {
@@ -5935,8 +5869,7 @@ type ImageStabilization struct {
 }
 
 // ImageStabilizationExtension type
-type ImageStabilizationExtension struct {
-}
+type ImageStabilizationExtension struct{}
 
 // IrCutFilterAutoAdjustment type
 type IrCutFilterAutoAdjustment struct {
@@ -5954,8 +5887,7 @@ type IrCutFilterAutoAdjustment struct {
 }
 
 // IrCutFilterAutoAdjustmentExtension type
-type IrCutFilterAutoAdjustmentExtension struct {
-}
+type IrCutFilterAutoAdjustmentExtension struct{}
 
 // WideDynamicRange20 type
 type WideDynamicRange20 struct {
@@ -6055,8 +5987,7 @@ type ToneCompensation struct {
 }
 
 // ToneCompensationExtension type
-type ToneCompensationExtension struct {
-}
+type ToneCompensationExtension struct{}
 
 // Defogging type
 type Defogging struct {
@@ -6071,8 +6002,7 @@ type Defogging struct {
 }
 
 // DefoggingExtension type
-type DefoggingExtension struct {
-}
+type DefoggingExtension struct{}
 
 // NoiseReduction type
 type NoiseReduction struct {
@@ -6171,8 +6101,7 @@ type ImagingOptions20Extension3 struct {
 }
 
 // ImagingOptions20Extension4 type
-type ImagingOptions20Extension4 struct {
-}
+type ImagingOptions20Extension4 struct{}
 
 // ImageStabilizationOptions type
 type ImageStabilizationOptions struct {
@@ -6187,8 +6116,7 @@ type ImageStabilizationOptions struct {
 }
 
 // ImageStabilizationOptionsExtension type
-type ImageStabilizationOptionsExtension struct {
-}
+type ImageStabilizationOptionsExtension struct{}
 
 // IrCutFilterAutoAdjustmentOptions type
 type IrCutFilterAutoAdjustmentOptions struct {
@@ -6206,8 +6134,7 @@ type IrCutFilterAutoAdjustmentOptions struct {
 }
 
 // IrCutFilterAutoAdjustmentOptionsExtension type
-type IrCutFilterAutoAdjustmentOptionsExtension struct {
-}
+type IrCutFilterAutoAdjustmentOptionsExtension struct{}
 
 // WideDynamicRangeOptions20 type
 type WideDynamicRangeOptions20 struct {
@@ -6312,8 +6239,7 @@ type WhiteBalance20 struct {
 }
 
 // WhiteBalance20Extension type
-type WhiteBalance20Extension struct {
-}
+type WhiteBalance20Extension struct{}
 
 // FocusConfiguration20 type
 type FocusConfiguration20 struct {
@@ -6341,8 +6267,7 @@ type FocusConfiguration20 struct {
 }
 
 // FocusConfiguration20Extension type
-type FocusConfiguration20Extension struct {
-}
+type FocusConfiguration20Extension struct{}
 
 // WhiteBalanceOptions20 type
 type WhiteBalanceOptions20 struct {
@@ -6361,8 +6286,7 @@ type WhiteBalanceOptions20 struct {
 }
 
 // WhiteBalanceOptions20Extension type
-type WhiteBalanceOptions20Extension struct {
-}
+type WhiteBalanceOptions20Extension struct{}
 
 // FocusOptions20 type
 type FocusOptions20 struct {
@@ -6426,8 +6350,7 @@ type NoiseReductionOptions struct {
 }
 
 // MessageExtension type
-type MessageExtension struct {
-}
+type MessageExtension struct{}
 
 // ItemList type
 type ItemList struct {
@@ -6453,8 +6376,7 @@ type ItemList struct {
 }
 
 // ItemListExtension type
-type ItemListExtension struct {
-}
+type ItemListExtension struct{}
 
 // MessageDescription type
 type MessageDescription struct {
@@ -6480,8 +6402,7 @@ type MessageDescription struct {
 }
 
 // MessageDescriptionExtension type
-type MessageDescriptionExtension struct {
-}
+type MessageDescriptionExtension struct{}
 
 // ItemListDescription type
 type ItemListDescription struct {
@@ -6509,8 +6430,7 @@ type ItemListDescription struct {
 }
 
 // ItemListDescriptionExtension type
-type ItemListDescriptionExtension struct {
-}
+type ItemListDescriptionExtension struct{}
 
 // Polyline type
 type Polyline struct {
@@ -6525,8 +6445,7 @@ type AnalyticsEngineConfiguration struct {
 }
 
 // AnalyticsEngineConfigurationExtension type
-type AnalyticsEngineConfigurationExtension struct {
-}
+type AnalyticsEngineConfigurationExtension struct{}
 
 // RuleEngineConfiguration type
 type RuleEngineConfiguration struct {
@@ -6536,8 +6455,7 @@ type RuleEngineConfiguration struct {
 }
 
 // RuleEngineConfigurationExtension type
-type RuleEngineConfigurationExtension struct {
-}
+type RuleEngineConfigurationExtension struct{}
 
 // Config type
 type Config struct {
@@ -6593,8 +6511,7 @@ type ConfigDescription struct {
 }
 
 // ConfigDescriptionExtension type
-type ConfigDescriptionExtension struct {
-}
+type ConfigDescriptionExtension struct{}
 
 // SupportedRules type
 type SupportedRules struct {
@@ -6609,8 +6526,7 @@ type SupportedRules struct {
 }
 
 // SupportedRulesExtension type
-type SupportedRulesExtension struct {
-}
+type SupportedRulesExtension struct{}
 
 // SupportedAnalyticsModules type
 type SupportedAnalyticsModules struct {
@@ -6627,8 +6543,7 @@ type SupportedAnalyticsModules struct {
 }
 
 // SupportedAnalyticsModulesExtension type
-type SupportedAnalyticsModulesExtension struct {
-}
+type SupportedAnalyticsModulesExtension struct{}
 
 // PolylineArray type
 type PolylineArray struct {
@@ -6640,8 +6555,7 @@ type PolylineArray struct {
 }
 
 // PolylineArrayExtension type
-type PolylineArrayExtension struct {
-}
+type PolylineArrayExtension struct{}
 
 // PaneLayout type
 type PaneLayout struct {
@@ -6663,8 +6577,7 @@ type Layout struct {
 }
 
 // LayoutExtension type
-type LayoutExtension struct {
-}
+type LayoutExtension struct{}
 
 // LayoutOptions type
 type LayoutOptions struct {
@@ -6676,8 +6589,7 @@ type LayoutOptions struct {
 }
 
 // LayoutOptionsExtension type
-type LayoutOptionsExtension struct {
-}
+type LayoutOptionsExtension struct{}
 
 // PaneLayoutOptions type
 type PaneLayoutOptions struct {
@@ -6689,8 +6601,7 @@ type PaneLayoutOptions struct {
 }
 
 // PaneOptionExtension type
-type PaneOptionExtension struct {
-}
+type PaneOptionExtension struct{}
 
 // Receiver type
 type Receiver struct {
@@ -6746,8 +6657,7 @@ type SearchScope struct {
 }
 
 // SearchScopeExtension type
-type SearchScopeExtension struct {
-}
+type SearchScopeExtension struct{}
 
 // RecordingSourceInformation type
 type RecordingSourceInformation struct {
@@ -6807,8 +6717,7 @@ type TrackAttributes struct {
 }
 
 // TrackAttributesExtension type
-type TrackAttributesExtension struct {
-}
+type TrackAttributesExtension struct{}
 
 // VideoAttributes type
 type VideoAttributes struct {
@@ -6890,8 +6799,7 @@ type RecordingJobConfiguration struct {
 }
 
 // RecordingJobConfigurationExtension type
-type RecordingJobConfigurationExtension struct {
-}
+type RecordingJobConfigurationExtension struct{}
 
 // RecordingJobSource type
 type RecordingJobSource struct {
@@ -6917,8 +6825,7 @@ type RecordingJobSource struct {
 }
 
 // RecordingJobSourceExtension type
-type RecordingJobSourceExtension struct {
-}
+type RecordingJobSourceExtension struct{}
 
 // RecordingJobTrack type
 type RecordingJobTrack struct {
@@ -6948,8 +6855,7 @@ type RecordingJobStateInformation struct {
 }
 
 // RecordingJobStateInformationExtension type
-type RecordingJobStateInformationExtension struct {
-}
+type RecordingJobStateInformationExtension struct{}
 
 // RecordingJobStateSource type
 type RecordingJobStateSource struct {
@@ -7002,8 +6908,7 @@ type AnalyticsDeviceEngineConfiguration struct {
 }
 
 // AnalyticsDeviceEngineConfigurationExtension type
-type AnalyticsDeviceEngineConfigurationExtension struct {
-}
+type AnalyticsDeviceEngineConfigurationExtension struct{}
 
 // EngineConfiguration type
 type EngineConfiguration struct {
@@ -7020,8 +6925,7 @@ type AnalyticsEngineInputInfo struct {
 }
 
 // AnalyticsEngineInputInfoExtension type
-type AnalyticsEngineInputInfoExtension struct {
-}
+type AnalyticsEngineInputInfoExtension struct{}
 
 // AnalyticsEngineInput type
 type AnalyticsEngineInput struct {
@@ -7044,8 +6948,7 @@ type SourceIdentification struct {
 }
 
 // SourceIdentificationExtension type
-type SourceIdentificationExtension struct {
-}
+type SourceIdentificationExtension struct{}
 
 // MetadataInput type
 type MetadataInput struct {
@@ -7055,8 +6958,7 @@ type MetadataInput struct {
 }
 
 // MetadataInputExtension type
-type MetadataInputExtension struct {
-}
+type MetadataInputExtension struct{}
 
 // ActionEngineEventPayload type
 type ActionEngineEventPayload struct {
@@ -7074,8 +6976,7 @@ type ActionEngineEventPayload struct {
 }
 
 // ActionEngineEventPayloadExtension type
-type ActionEngineEventPayloadExtension struct {
-}
+type ActionEngineEventPayloadExtension struct{}
 
 // AudioClassCandidate type
 type AudioClassCandidate struct {
@@ -7097,8 +6998,7 @@ type AudioClassDescriptor struct {
 }
 
 // AudioClassDescriptorExtension type
-type AudioClassDescriptorExtension struct {
-}
+type AudioClassDescriptorExtension struct{}
 
 // ActiveConnection type
 type ActiveConnection struct {
@@ -7115,8 +7015,7 @@ type ProfileStatus struct {
 }
 
 // ProfileStatusExtension type
-type ProfileStatusExtension struct {
-}
+type ProfileStatusExtension struct{}
 
 // OSDReference type
 type OSDReference struct {
@@ -7136,8 +7035,7 @@ type OSDPosConfiguration struct {
 }
 
 // OSDPosConfigurationExtension type
-type OSDPosConfigurationExtension struct {
-}
+type OSDPosConfigurationExtension struct{}
 
 // OSDColor type
 type OSDColor struct {
@@ -7184,8 +7082,7 @@ type OSDTextConfiguration struct {
 }
 
 // OSDTextConfigurationExtension type
-type OSDTextConfigurationExtension struct {
-}
+type OSDTextConfigurationExtension struct{}
 
 // OSDImgConfiguration type
 type OSDImgConfiguration struct {
@@ -7197,8 +7094,7 @@ type OSDImgConfiguration struct {
 }
 
 // OSDImgConfigurationExtension type
-type OSDImgConfigurationExtension struct {
-}
+type OSDImgConfigurationExtension struct{}
 
 // ColorspaceRange type
 type ColorspaceRange struct {
@@ -7237,8 +7133,7 @@ type OSDColorOptions struct {
 }
 
 // OSDColorOptionsExtension type
-type OSDColorOptionsExtension struct {
-}
+type OSDColorOptionsExtension struct{}
 
 // OSDTextOptions type
 type OSDTextOptions struct {
@@ -7265,8 +7160,7 @@ type OSDTextOptions struct {
 }
 
 // OSDTextOptionsExtension type
-type OSDTextOptionsExtension struct {
-}
+type OSDTextOptionsExtension struct{}
 
 // OSDImgOptions type
 type OSDImgOptions struct {
@@ -7294,8 +7188,7 @@ type OSDImgOptions struct {
 }
 
 // OSDImgOptionsExtension type
-type OSDImgOptionsExtension struct {
-}
+type OSDImgOptionsExtension struct{}
 
 // OSDConfiguration type
 type OSDConfiguration struct {
@@ -7320,8 +7213,7 @@ type OSDConfiguration struct {
 }
 
 // OSDConfigurationExtension type
-type OSDConfigurationExtension struct {
-}
+type OSDConfigurationExtension struct{}
 
 // MaximumNumberOfOSDs type
 type MaximumNumberOfOSDs struct {
@@ -7361,8 +7253,7 @@ type OSDConfigurationOptions struct {
 }
 
 // OSDConfigurationOptionsExtension type
-type OSDConfigurationOptionsExtension struct {
-}
+type OSDConfigurationOptionsExtension struct{}
 
 // FileProgress type
 type FileProgress struct {
@@ -7384,8 +7275,7 @@ type ArrayOfFileProgress struct {
 }
 
 // ArrayOfFileProgressExtension type
-type ArrayOfFileProgressExtension struct {
-}
+type ArrayOfFileProgressExtension struct{}
 
 // StorageReferencePath type
 type StorageReferencePath struct {
@@ -7400,8 +7290,7 @@ type StorageReferencePath struct {
 }
 
 // StorageReferencePathExtension type
-type StorageReferencePathExtension struct {
-}
+type StorageReferencePathExtension struct{}
 
 // Media2 type
 type Media2 interface {
