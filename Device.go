@@ -251,6 +251,10 @@ func (dev Device) getEndpoint(endpoint string) (string, error) {
 func (dev Device) CallMethod(method interface{}) (*http.Response, error) {
 	pkgPath := strings.Split(reflect.TypeOf(method).PkgPath(), "/")
 	pkg := strings.ToLower(pkgPath[len(pkgPath)-1])
+	//TODO: refactor and cleanup code
+	if pkg == "media2" {
+		pkg = "media"
+	}
 
 	endpoint, err := dev.getEndpoint(pkg)
 	if err != nil {
