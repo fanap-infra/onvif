@@ -15,6 +15,9 @@ import (
 	"net"
 	"strings"
 	"time"
+	"syscall"
+	"context"
+	"golang.org/x/sys/unix"
 
 	"github.com/beevik/etree"
 	"github.com/gofrs/uuid"
@@ -22,7 +25,6 @@ import (
 )
 
 const bufSize = 8192
-
 //CheckConnection ...
 func CheckConnection(ip, port string) (bool, error) {
 	servAddr := ip + ":" + port
@@ -119,6 +121,20 @@ func SendProbe(interfaceName string, scopes, types []string, namespaces map[stri
 
 }
 
+func reusePort(network, address string, conn syscall.RawConn) error {
+	return conn.Control(func(descriptor uintptr) {
+		err := unix.SetsockoptInt(int(descriptor), unix.SOL_SOCKET, unix.SO_REUSEADDR, 1)
+		if err != nil {
+			return
+		}
+
+		err = unix.SetsockoptInt(int(descriptor), unix.SOL_SOCKET, unix.SO_REUSEPORT, 1)
+		if err != nil {
+			return
+		}
+	})
+}
+
 func sendUDPMulticast(msg string, interfaceName string) []string {
 	var result []string
 	data := []byte(msg)
@@ -127,38 +143,43 @@ func sendUDPMulticast(msg string, interfaceName string) []string {
 		fmt.Println(err)
 	}
 	group := net.IPv4(239, 255, 255, 250)
-
-	c, err := net.ListenPacket("udp4", "0.0.0.0:1024")
+	config := &net.ListenConfig{Control: reusePort}
+	const network = "udp4"
+	const address = "0.0.0.0:1024"
+	c, err := config.ListenPacket(context.Background(), network, address)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("can not ListenPacket, ",err)
 	}
 	defer c.Close()
 
 	p := ipv4.NewPacketConn(c)
 	if err := p.JoinGroup(iface, &net.UDPAddr{IP: group}); err != nil {
-		fmt.Println(err)
+		fmt.Println("can not JoinGroup, ", err)
 	}
 
 	dst := &net.UDPAddr{IP: group, Port: 3702}
 	for _, ifi := range []*net.Interface{iface} {
 		if err := p.SetMulticastInterface(ifi); err != nil {
-			fmt.Println(err)
+			fmt.Println("can not SetMulticastInterface, ", err)
 		}
-		p.SetMulticastTTL(2)
+		err = p.SetMulticastTTL(2)
+		if err != nil {
+			fmt.Println("can not SetMulticastTTL, ", err)
+		}
 		if _, err := p.WriteTo(data, nil, dst); err != nil {
-			fmt.Println(err)
+			fmt.Println("can not WriteTo, ",err)
 		}
 	}
 
-	if err := p.SetReadDeadline(time.Now().Add(time.Second * 1)); err != nil {
-		log.Fatal(err)
+	if err := p.SetReadDeadline(time.Now().Add(time.Second * 2)); err != nil {
+		fmt.Println("can not set read dead line, ",err)
+		return result
 	}
 
 	for {
 		b := make([]byte, bufSize)
 		n, _, _, err := p.ReadFrom(b)
 		if err != nil {
-			fmt.Println(err)
 			break
 		}
 		result = append(result, string(b[0:n]))
