@@ -18,6 +18,7 @@ import (
 	"syscall"
 	"context"
 	"golang.org/x/sys/unix"
+	"sync/atomic"
 
 	"github.com/beevik/etree"
 	"github.com/gofrs/uuid"
@@ -25,6 +26,7 @@ import (
 )
 
 const bufSize = 8192
+var ttl =  uint64(2)
 //CheckConnection ...
 func CheckConnection(ip, port string) (bool, error) {
 	servAddr := ip + ":" + port
@@ -162,7 +164,7 @@ func sendUDPMulticast(msg string, interfaceName string) []string {
 		if err := p.SetMulticastInterface(ifi); err != nil {
 			fmt.Println("can not SetMulticastInterface, ", err)
 		}
-		err = p.SetMulticastTTL(2)
+		err = p.SetMulticastTTL(int(ttl))
 		if err != nil {
 			fmt.Println("can not SetMulticastTTL, ", err)
 		}
@@ -185,4 +187,8 @@ func sendUDPMulticast(msg string, interfaceName string) []string {
 		result = append(result, string(b[0:n]))
 	}
 	return result
+}
+
+func SetPacketTTL(packetTTL uint) {
+	atomic.StoreUint64(&ttl, uint64(packetTTL))
 }
