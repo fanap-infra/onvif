@@ -57,7 +57,8 @@ func writeUDP(ip string, port int, data string) string {
 	conn, err := net.DialUDP("udp", nil, &address)
 
 	if err != nil {
-		log.Fatal(err)
+		fmt.Printf("can not dial UDP, address: %s, error: %s\n", address.IP, err.Error())
+		return ""
 	}
 
 	fmt.Printf("Connected: %T, %v\n", conn, conn)
@@ -71,24 +72,29 @@ func writeUDP(ip string, port int, data string) string {
 	_, wrerr := conn.Write(b)
 
 	if wrerr != nil {
-		fmt.Printf("conn.Write() error: %s\n", wrerr)
+		fmt.Printf("conn.Write(), address: %s, error: %s\n", address.IP, wrerr.Error())
 		return ""
 	}
 
 	conn.SetReadDeadline(time.Now().Add(1 * time.Second))
 	cc, rderr := conn.Read(readBytes)
 	if rderr != nil {
-		fmt.Printf("conn.Read() error: %s\n", rderr)
+		fmt.Printf("conn.Read(), address: %s, error: %s\n", address.IP, rderr.Error())
 		return ""
 	}
 
 	if err = conn.Close(); err != nil {
+		log.Printf("can not close socket connection, address: %s, error %s", address.IP, err.Error())
+	}
+
+	if cc < 1 {
+		log.Printf("can not read data from socket, address: %s, error %s", address.IP, err.Error())
 		return ""
 	}
 
 	doc := etree.NewDocument()
 	if err := doc.ReadFromString(string(readBytes[0:cc])); err != nil {
-		log.Printf("error %s", err)
+		log.Printf("can not parse byte array, address: %s, error %s",address.IP, err.Error())
 		return ""
 	}
 
