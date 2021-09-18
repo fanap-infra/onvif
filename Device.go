@@ -9,6 +9,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 
 	"github.com/beevik/etree"
 	"github.com/fanap-infra/onvif/device"
@@ -313,5 +314,6 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 	/*
 		Sending request and returns the response
 	*/
-	return networking.SendSoap(dev.login, dev.password, endpoint, soap.String())
+	// return networking.SendSoap(dev.login, dev.password, endpoint, soap.String())
+	return networking.SendSoapWithDigestAndHttpReq(dev.login, dev.password, endpoint, soap.String(), 10*time.Second)
 }
