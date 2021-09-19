@@ -10,4 +10,5 @@ require (
 	github.com/videonext/onvif v0.0.0-20200826090911-d0d7546064b0
 	github.com/xinsnake/go-http-digest-auth-client v0.6.0
 	golang.org/x/net v0.0.0-20200425230154-ff2c4b7c35a0
+	golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd
 )
