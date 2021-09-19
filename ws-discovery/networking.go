@@ -10,15 +10,16 @@ package wsdiscovery
  *******************************************************/
 
 import (
+	"context"
 	"fmt"
 	"log"
 	"net"
 	"strings"
-	"time"
-	"syscall"
-	"context"
-	"golang.org/x/sys/unix"
 	"sync/atomic"
+	"syscall"
+	"time"
+
+	"golang.org/x/sys/unix"
 
 	"github.com/beevik/etree"
 	"github.com/gofrs/uuid"
@@ -26,16 +27,19 @@ import (
 )
 
 const bufSize = 8192
-var ttl =  uint64(2)
+
+var ttl = uint64(2)
+
 //CheckConnection ...
 func CheckConnection(ip, port string) (bool, error) {
 	servAddr := ip + ":" + port
 
-	d := net.Dialer{Timeout: 5 * time.Second}
-	_, err := d.Dial("tcp", servAddr)
+	d := net.Dialer{Timeout: 2 * time.Second}
+	conn, err := d.Dial("tcp", servAddr)
 	if err != nil {
 		return false, err
 	}
+	defer conn.Close()
 
 	return true, nil
 }
@@ -94,7 +98,7 @@ func writeUDP(ip string, port int, data string) string {
 
 	doc := etree.NewDocument()
 	if err := doc.ReadFromString(string(readBytes[0:cc])); err != nil {
-		log.Printf("can not parse byte array, address: %s, error %s",address.IP, err.Error())
+		log.Printf("can not parse byte array, address: %s, error %s", address.IP, err.Error())
 		return ""
 	}
 
@@ -156,7 +160,7 @@ func sendUDPMulticast(msg string, interfaceName string) []string {
 	const address = "0.0.0.0:1024"
 	c, err := config.ListenPacket(context.Background(), network, address)
 	if err != nil {
-		fmt.Println("can not ListenPacket, ",err)
+		fmt.Println("can not ListenPacket, ", err)
 	}
 	defer c.Close()
 
@@ -175,12 +179,12 @@ func sendUDPMulticast(msg string, interfaceName string) []string {
 			fmt.Println("can not SetMulticastTTL, ", err)
 		}
 		if _, err := p.WriteTo(data, nil, dst); err != nil {
-			fmt.Println("can not WriteTo, ",err)
+			fmt.Println("can not WriteTo, ", err)
 		}
 	}
 
 	if err := p.SetReadDeadline(time.Now().Add(time.Second * 2)); err != nil {
-		fmt.Println("can not set read dead line, ",err)
+		fmt.Println("can not set read dead line, ", err)
 		return result
 	}
 
