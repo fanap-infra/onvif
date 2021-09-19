@@ -31,7 +31,7 @@ var ttl =  uint64(2)
 func CheckConnection(ip, port string) (bool, error) {
 	servAddr := ip + ":" + port
 
-	d := net.Dialer{Timeout: 2 * time.Second}
+	d := net.Dialer{Timeout: 5 * time.Second}
 	_, err := d.Dial("tcp", servAddr)
 	if err != nil {
 		return false, err
