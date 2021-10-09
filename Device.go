@@ -18,7 +18,7 @@ import (
 	wsdiscovery "github.com/fanap-infra/onvif/ws-discovery"
 )
 
-//Xlmns XML Scheam
+// Xlmns XML Scheam
 var Xlmns = map[string]string{
 	"onvif":   "http://www.onvif.org/ver10/schema",
 	"tds":     "http://www.onvif.org/ver10/device/wsdl",
@@ -37,7 +37,7 @@ var Xlmns = map[string]string{
 	"wsaw":    "http://www.w3.org/2006/05/addressing/wsdl",
 }
 
-//DeviceType alias for int
+// DeviceType alias for int
 type DeviceType int
 
 // Onvif Device Tyoe
@@ -64,7 +64,7 @@ func (devType DeviceType) String() string {
 	}
 }
 
-//deviceInfo struct contains general information about ONVIF device
+// deviceInfo struct contains general information about ONVIF device
 type deviceInfo struct {
 	Manufacturer    string
 	Model           string
@@ -73,9 +73,9 @@ type deviceInfo struct {
 	HardwareId      string
 }
 
-//Device for a new device of onvif and deviceInfo
-//struct represents an abstract ONVIF device.
-//It contains methods, which helps to communicate with ONVIF device
+// Device for a new device of onvif and deviceInfo
+// struct represents an abstract ONVIF device.
+// It contains methods, which helps to communicate with ONVIF device
 type Device struct {
 	xaddr     string
 	login     string
@@ -84,7 +84,7 @@ type Device struct {
 	info      deviceInfo
 }
 
-//GetServices return available endpoints
+// GetServices return available endpoints
 func (dev *Device) GetServices() map[string]string {
 	return dev.endpoints
 }
@@ -97,7 +97,7 @@ func readResponse(resp *http.Response) string {
 	return string(b)
 }
 
-//GetAvailableDevicesAtSpecificEthernetInterface ...
+// GetAvailableDevicesAtSpecificEthernetInterface ...
 func GetAvailableDevicesAtSpecificEthernetInterface(interfaceName string) []Device {
 	/*
 		Call an ws-discovery Probe Message to Discover NVT type Devices
@@ -114,7 +114,7 @@ func GetAvailableDevicesAtSpecificEthernetInterface(interfaceName string) []Devi
 		////fmt.Println(j)
 		endpoints := doc.Root().FindElements("./Body/ProbeMatches/ProbeMatch/XAddrs")
 		for _, xaddr := range endpoints {
-			//fmt.Println(xaddr.Tag,strings.Split(strings.Split(xaddr.Text(), " ")[0], "/")[2] )
+			// fmt.Println(xaddr.Tag,strings.Split(strings.Split(xaddr.Text(), " ")[0], "/")[2] )
 			xaddr := strings.Split(strings.Split(xaddr.Text(), " ")[0], "/")[2]
 			fmt.Println(xaddr)
 			c := 0
@@ -128,7 +128,7 @@ func GetAvailableDevicesAtSpecificEthernetInterface(interfaceName string) []Devi
 				continue
 			}
 			dev, err := NewDevice(strings.Split(xaddr, " ")[0])
-			//fmt.Println(dev)
+			// fmt.Println(dev)
 			if err != nil {
 				fmt.Println("Error", xaddr)
 				fmt.Println(err)
@@ -155,7 +155,7 @@ func (dev *Device) getSupportedServices(resp *http.Response) {
 	data, _ := ioutil.ReadAll(resp.Body)
 
 	if err := doc.ReadFromBytes(data); err != nil {
-		//log.Println(err.Error())
+		// log.Println(err.Error())
 		return
 	}
 	services := doc.FindElements("./Envelope/Body/GetCapabilitiesResponse/Capabilities/*/XAddr")
@@ -167,7 +167,7 @@ func (dev *Device) getSupportedServices(resp *http.Response) {
 	//}
 }
 
-//NewDevice function construct a ONVIF Device entity
+// NewDevice function construct a ONVIF Device entity
 func NewDevice(xaddr string) (*Device, error) {
 	dev := new(Device)
 	dev.xaddr = xaddr
@@ -177,10 +177,10 @@ func NewDevice(xaddr string) (*Device, error) {
 	getCapabilities := device.GetCapabilities{Category: "All"}
 
 	resp, err := dev.CallMethod(getCapabilities)
-	//fmt.Println(resp.Request.Host)
-	//fmt.Println(readResponse(resp))
+	// fmt.Println(resp.Request.Host)
+	// fmt.Println(readResponse(resp))
 	if err != nil || resp.StatusCode != http.StatusOK {
-		//panic(errors.New("camera is not available at " + xaddr + " or it does not support ONVIF services"))
+		// panic(errors.New("camera is not available at " + xaddr + " or it does not support ONVIF services"))
 		return nil, errors.New("camera is not available at " + xaddr + " or it does not support ONVIF services")
 	}
 
@@ -189,23 +189,22 @@ func NewDevice(xaddr string) (*Device, error) {
 }
 
 func (dev *Device) addEndpoint(Key, Value string) {
-
-	//use lowCaseKey
-	//make key having ability to handle Mixed Case for Different vendor devcie (e.g. Events EVENTS, events)
+	// use lowCaseKey
+	// make key having ability to handle Mixed Case for Different vendor devcie (e.g. Events EVENTS, events)
 	lowCaseKey := strings.ToLower(Key)
 	dev.endpoints[lowCaseKey] = Value
 }
 
-//Authenticate function authenticate client in the ONVIF device.
-//Function takes <username> and <password> params.
-//You should use this function to allow authorized requests to the ONVIF Device
-//To change auth data call this function again.
+// Authenticate function authenticate client in the ONVIF device.
+// Function takes <username> and <password> params.
+// You should use this function to allow authorized requests to the ONVIF Device
+// To change auth data call this function again.
 func (dev *Device) Authenticate(username, password string) {
 	dev.login = username
 	dev.password = password
 }
 
-//GetEndpoint returns specific ONVIF service endpoint address
+// GetEndpoint returns specific ONVIF service endpoint address
 func (dev *Device) GetEndpoint(name string) string {
 	return dev.endpoints[name]
 }
@@ -213,7 +212,7 @@ func (dev *Device) GetEndpoint(name string) string {
 func buildMethodSOAP(msg string) (gosoap.SoapMessage, error) {
 	doc := etree.NewDocument()
 	if err := doc.ReadFromString(msg); err != nil {
-		//log.Println("Got error")
+		// log.Println("Got error")
 
 		return "", err
 	}
@@ -221,22 +220,21 @@ func buildMethodSOAP(msg string) (gosoap.SoapMessage, error) {
 
 	soap := gosoap.NewEmptySOAP()
 	soap.AddBodyContent(element)
-	//soap.AddRootNamespace("onvif", "http://www.onvif.org/ver10/device/wsdl")
+	// soap.AddRootNamespace("onvif", "http://www.onvif.org/ver10/device/wsdl")
 
 	return soap, nil
 }
 
-//getEndpoint functions get the target service endpoint in a better way
+// getEndpoint functions get the target service endpoint in a better way
 func (dev Device) getEndpoint(endpoint string) (string, error) {
-
 	// common condition, endpointMark in map we use this.
 	if endpointURL, bFound := dev.endpoints[endpoint]; bFound {
 		return endpointURL, nil
 	}
 
-	//but ,if we have endpoint like event、analytic
-	//and sametime the Targetkey like : events、analytics
-	//we use fuzzy way to find the best match url
+	// but ,if we have endpoint like event、analytic
+	// and sametime the Targetkey like : events、analytics
+	// we use fuzzy way to find the best match url
 	var endpointURL string
 	for targetKey := range dev.endpoints {
 		if strings.Contains(targetKey, endpoint) {
@@ -247,12 +245,12 @@ func (dev Device) getEndpoint(endpoint string) (string, error) {
 	return endpointURL, errors.New("target endpoint service not found")
 }
 
-//CallMethod functions call an method, defined <method> struct.
-//You should use Authenticate method to call authorized requests.
+// CallMethod functions call an method, defined <method> struct.
+// You should use Authenticate method to call authorized requests.
 func (dev Device) CallMethod(method interface{}) (*http.Response, error) {
 	pkgPath := strings.Split(reflect.TypeOf(method).PkgPath(), "/")
 	pkg := strings.ToLower(pkgPath[len(pkgPath)-1])
-	//TODO: refactor and cleanup code
+	// TODO: refactor and cleanup code
 	if pkg == "media2" {
 		pkg = "media"
 	}
@@ -264,7 +262,7 @@ func (dev Device) CallMethod(method interface{}) (*http.Response, error) {
 	return dev.callMethodDo(endpoint, method)
 }
 
-//CallMethodXML ...
+// CallMethodXML ...
 func (dev Device) CallMethodXML(method interface{}, xml string) (*http.Response, error) {
 	pkgPath := strings.Split(reflect.TypeOf(method).PkgPath(), "/")
 	pkg := strings.ToLower(pkgPath[len(pkgPath)-1])
@@ -276,14 +274,14 @@ func (dev Device) CallMethodXML(method interface{}, xml string) (*http.Response,
 	return networking.SendSoap(dev.login, dev.password, endpoint, xml)
 }
 
-//CallMethod functions call an method, defined <method> struct with authentication data
+// CallMethod functions call an method, defined <method> struct with authentication data
 func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Response, error) {
 	/*
 		Converting <method> struct to xml string representation
 	*/
 	output, err := xml.MarshalIndent(method, "  ", "    ")
 	if err != nil {
-		//log.Printf("error: %v\n", err.Error())
+		// log.Printf("error: %v\n", err.Error())
 		return nil, err
 	}
 	//fmt.Println(gosoap.SoapMessage(string(output)).StringIndent())
@@ -292,7 +290,7 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 	*/
 	soap, err := buildMethodSOAP(string(output))
 	if err != nil {
-		//log.Printf("error: %v\n", err.Error())
+		// log.Printf("error: %v\n", err.Error())
 		return nil, err
 	}
 
@@ -302,11 +300,11 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 	*/
 	soap.AddRootNamespaces(Xlmns)
 
-	//fmt.Println(soap.StringIndent())
-	//Header handling
+	// fmt.Println(soap.StringIndent())
+	// Header handling
 	soap.AddAction()
 
-	//Auth Handling
+	// Auth Handling
 	if dev.login != "" && dev.password != "" {
 		soap.AddWSSecurity(dev.login, dev.password)
 	}
@@ -315,5 +313,5 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 		Sending request and returns the response
 	*/
 	// return networking.SendSoap(dev.login, dev.password, endpoint, soap.String())
-	return networking.SendSoapWithDigestAndHttpReq(dev.login, dev.password, endpoint, soap.String(), 10*time.Second)
+	return networking.SendSoapWithDigestAndHttpReq(dev.login, dev.password, endpoint, soap.String(), 3*time.Second)
 }
