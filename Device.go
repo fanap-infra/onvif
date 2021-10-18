@@ -313,5 +313,5 @@ func (dev Device) callMethodDo(endpoint string, method interface{}) (*http.Respo
 		Sending request and returns the response
 	*/
 	// return networking.SendSoap(dev.login, dev.password, endpoint, soap.String())
-	return networking.SendSoapWithDigestAndHttpReq(dev.login, dev.password, endpoint, soap.String(), 3*time.Second)
+	return networking.SendSoapWithDigestAndHttpReq(dev.login, dev.password, endpoint, soap.String(), 10*time.Second)
 }
